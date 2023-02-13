@@ -1,27 +1,12 @@
-class Solution {
-    public int maxSubArray(int[] arr) {
-        int max_ending_here=0;
-    int max_so_far=0;
-    int start =0;
-    int end=0;
-
-
-    for(int i=0;i< arr.length;i++){
-        max_ending_here=max_ending_here+arr[i];
-        if(max_ending_here<0)
-        {
-            start=i+1; //Every time it goes negative start from next index
-            max_ending_here=0;
+public int maxSubArray(int[] nums) {
+    int max_sum = Integer.MIN_VALUE ; 
+    int curr_sum = 0 ; 
+    for(int elem : nums){
+        curr_sum+=elem;
+        max_sum = Math.max(max_sum ,curr_sum);
+        if(curr_sum <0){
+            curr_sum =0 ;
         }
-        else 
-            end =i; //As long as its positive keep updating the end
-
-        if(max_so_far<max_ending_here){
-            max_so_far=max_ending_here;
-        }
-
     }
-    return max_so_far;
-}
-
+    return max_sum ;
 }
